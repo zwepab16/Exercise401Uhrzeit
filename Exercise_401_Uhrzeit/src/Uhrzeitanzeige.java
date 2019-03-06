@@ -5,16 +5,26 @@ import javax.swing.JLabel;
 
 public class Uhrzeitanzeige extends javax.swing.JFrame {
 
-    UhrPanel up;
+    UhrPanel up1,up2,up3;
 
     public Uhrzeitanzeige() {
         initComponents();
-        this.setLayout(new GridLayout(3, 1));
-        up = new UhrPanel(LocalTime.now());
-        Thread t = new Thread(up);
-        panel.add(up);
-        t.start();
-
+        this.setLayout(new GridLayout(1, 3));
+        up1 = new UhrPanel(LocalTime.now());
+        Thread t1 = new Thread(up1);
+        panel.add(up1);
+        t1.start();
+     
+         up2 = new UhrPanel(LocalTime.now());
+        Thread t2 = new Thread(up2);
+        panel.add(up2);
+        t2.start();
+        
+         up3 = new UhrPanel(LocalTime.now());
+        Thread t3 = new Thread(up3);
+        panel.add(up3);
+        t3.start();
+        
         repaint();
     }
 
@@ -27,7 +37,7 @@ public class Uhrzeitanzeige extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel.setMinimumSize(new java.awt.Dimension(400, 300));
-        panel.setLayout(new java.awt.GridLayout());
+        panel.setLayout(new java.awt.GridLayout(3, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

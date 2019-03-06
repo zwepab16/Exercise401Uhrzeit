@@ -1,10 +1,13 @@
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.PopupMenu;
 import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,15 +19,17 @@ public class UhrPanel extends JPanel implements Runnable {
 
     public UhrPanel(LocalTime d) {
         this.d = d;
+        this.setBackground(Color.BLACK);
         this.setLayout(new GridLayout(1, 8));
-        this.setSize(1800, 302);
+        this.setSize(1300, 302);
         update();
+        Image image = new ImageIcon("./bilder/punkt.png").getImage().getScaledInstance(180, 302, Image.SCALE_SMOOTH);
         this.add(h1);
         this.add(h2);
-        this.add(new JLabel(":"));
+        this.add(new JLabel(new ImageIcon(image)));
         this.add(m1);
         this.add(m2);
-        this.add(new JLabel(":"));
+        this.add(new JLabel(new ImageIcon(image)));
         this.add(s1);
         this.add(s2);
 
@@ -37,7 +42,7 @@ public class UhrPanel extends JPanel implements Runnable {
             update();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(UhrPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
