@@ -13,17 +13,19 @@ import javax.swing.JPanel;
 
 public class UhrPanel extends JPanel implements Runnable {
 
-    Zahl h1=new Zahl(0), h2=new Zahl(0), m1=new Zahl(0), m2=new Zahl(0), s1=new Zahl(0), s2=new Zahl(0);
+    private Zahl h1=new Zahl(0), h2=new Zahl(0), m1=new Zahl(0), m2=new Zahl(0), s1=new Zahl(0), s2=new Zahl(0);
     
-    LocalTime d;
+    private LocalTime d;
+    private int unterschied;
 
-    public UhrPanel(LocalTime d) {
-        this.d = d;
+    public UhrPanel(int unterschied) {
+        this.unterschied=unterschied;
+        
         this.setBackground(Color.BLACK);
         this.setLayout(new GridLayout(1, 8));
-        this.setSize(1300, 302);
+        
         update();
-        Image image = new ImageIcon("./bilder/punkt.png").getImage().getScaledInstance(180, 302, Image.SCALE_SMOOTH);
+        Image image = new ImageIcon("./bilder/punkt.png").getImage().getScaledInstance(72, 120, Image.SCALE_SMOOTH);
         this.add(h1);
         this.add(h2);
         this.add(new JLabel(new ImageIcon(image)));
@@ -42,25 +44,25 @@ public class UhrPanel extends JPanel implements Runnable {
             update();
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(UhrPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            repaint();
         }
     }
 
     public void update() {
-        d = LocalTime.now();
-        int zahl = d.getHour();
-        String s = String.format("%02d", zahl);
+       d = LocalTime.now().plusHours(unterschied);
+       int zahl = d.getHour();
+       String s = String.format("%02d", zahl);
        h1.setIcon(Integer.parseInt(s.substring(0, 1)));
        h2.setIcon(Integer.parseInt(s.substring(1, 2)));
 
         zahl = d.getMinute();
         s = String.format("%02d", zahl);
-        m1 = (new Zahl(Integer.parseInt(s.substring(0, 1))));
-        m2 = (new Zahl(Integer.parseInt(s.substring(1, 2))));
+        m1.setIcon(Integer.parseInt(s.substring(0, 1)));
+        m2.setIcon(Integer.parseInt(s.substring(1, 2)));
 
         zahl = d.getSecond();
         s = String.format("%02d", zahl);
