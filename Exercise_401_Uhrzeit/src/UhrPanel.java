@@ -44,12 +44,11 @@ public class UhrPanel extends JPanel implements Runnable {
             update();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(250);
             } catch (InterruptedException ex) {
                 Logger.getLogger(UhrPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            repaint();
-        }
+            }
     }
 
     public void update() {
