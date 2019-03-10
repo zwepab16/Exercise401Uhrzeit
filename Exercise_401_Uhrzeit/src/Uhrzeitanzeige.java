@@ -1,17 +1,14 @@
 
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.time.LocalTime;
-import javax.swing.JLabel;
 
 public class Uhrzeitanzeige extends javax.swing.JFrame {
 
-    UhrPanel up1,up2,up3;
+    UhrPanel up1, up2, up3;
 
     public Uhrzeitanzeige() {
         initComponents();
         this.setBackground(Color.BLACK);
-  
+
         up1 = new UhrPanel(0);
         new Thread(up1).start();
         panel.add(up1);
@@ -21,8 +18,7 @@ public class Uhrzeitanzeige extends javax.swing.JFrame {
         up3 = new UhrPanel(-1);
         new Thread(up3).start();
         panel.add(up3);
-        
-    
+
     }
 
     @SuppressWarnings("unchecked")
